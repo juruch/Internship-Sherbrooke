@@ -2,6 +2,12 @@
 [The original code for ROC](https://github.com/tdhock/tdhock.github.io/blob/master/_posts/2024-10-28-auto-grad-overhead.md) 
 with documentation and explenations.
 
+<br />
+
+``` r
+four_labels_vec <- c(-1,-1,1,1)
+four_pred_vec <- c(2.0, -3.5, -1.0, 1.5)
+``` 
 
 ``` r
 ROC_curve <- function(pred_tensor, label_tensor){
