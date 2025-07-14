@@ -29,7 +29,7 @@ Results with two epochs :
 
 - To start learning about the PR curve and its differences with the ROC I redid [this](https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-imbalanced-classification/) code and [this](https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-classification-in-python/) code to better understand the Precision Recall and how to code them in pyhton.
 
-- I also learned about the precision-recall curve by redoing [this code](https://www.blog.trainindata.com/precision-recall-curves/) using the iris dataset (with the Iris-versicolor and the Iris-virginica). I first coded it in [python](https://github.com/juruch/Internship-Sherbrooke/blob/main/Learning-PR-Curves/PrecisionRecall-Iris.ipynb) to follow the tutorial. I then tried to do the same code in R
+- I also learned about the precision-recall curve by redoing [this code](https://www.blog.trainindata.com/precision-recall-curves/) using the iris dataset (with the Iris-versicolor and the Iris-virginica). I first coded it in [python](Learning-PR-Curves/PrecisionRecall-Iris.ipynb) to follow the tutorial. I then tried to do the same code in R
 <p align="center">
   <img src="Figures/Fig-Week1-IrisPR-py.png" alt="Description" width="800"/>
 </p>
@@ -38,7 +38,7 @@ Results with two epochs :
 
 &nbsp; Where Precision = $\frac{\text{True Positive}}{\text{True Positive} + \text{False Positive}}$ and Recall = $\frac{\text{True Positive}}{\text{True Positive} + \text{False Negative}}$ = True Positive Rate.
 
-- Finally I did the [comparison between ROC and PR](https://github.com/juruch/Internship-Sherbrooke/blob/main/Learning-PR-Curves/ROCvsPR-BreastCancer.ipynb) curves in python using a dataset a little bigger on breast cancer to see if the size of the dataset would impact the result.
+- Finally I did the [comparison between ROC and PR](Learning-PR-Curves/ROCvsPR-BreastCancer.ipynb) curves in python using a dataset a little bigger on breast cancer to see if the size of the dataset would impact the result.
 <p align="center">
   <img src="Figures/Fig-Week1-CancerPR-py.png" alt="Description" width="800"/>
 </p>
@@ -47,4 +47,4 @@ Results with two epochs :
 
 ## Week 2
 - To continue my studies on the PR curve I used [this code](https://tdhock.github.io/blog/2024/auto-grad-overhead/) and transformed it from ROC to PR.
-  [Here](ROC to PR Curves/PR.md) I looked at the differences between the two codes.
+  [Here](ROC-to-PR-Curve/PR.md) I looked at the differences between the two codes.
