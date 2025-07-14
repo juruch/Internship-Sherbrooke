@@ -5,6 +5,14 @@ This project is the work I did during my two months summer research internship a
 
 ---
 
+## Lexicon
+ROC : Receiver Operating Characteristic
+AUC : Area Under the Curve
+AUM : Area Under the Minimum
+
+PR : Precision-Recall
+
+
 ## Week 1
 
 - I began by redoing the [following code](https://tdhock.github.io/blog/2025/mlr3torch-conv/), only changing the number of epochs from 200 to 2 to make it run on my own computer.  
@@ -27,3 +35,9 @@ Results with two epochs :
 &nbsp; Here the best treshold is computed using the F1-score :  $\frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$.
 
 &nbsp; Where Precision = $\frac{\text{True Positive}}{\text{True Positive} + \text{False Positive}}$ and Recall = $\frac{\text{True Positive}}{\text{True Positive} + \text{False Negative}}$ = True Positive Rate.
+
+
+
+
+## Week 2
+- To continue my studies on the PR curve I used [this code](https://tdhock.github.io/blog/2024/auto-grad-overhead/) and transformed it from ROC to PR.
