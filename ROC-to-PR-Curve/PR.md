@@ -169,6 +169,18 @@ The PR AUC value is 0.08 wich is a lot worse than the ROC value.
 
 ---
 # AUM (Area Under the Minimum)
+> Recently [in JMLR23](https://jmlr.org/papers/v24/21-0751.html)
+we proposed a new loss function called the AUM, Area Under Min of
+False Positive and False Negative rates. We showed that is can be
+interpreted as a L1 relaxation of the sum of min of False Positive and
+False Negative rates, over all points on the ROC curve. We
+additionally showed that AUM is piecewise linear, and differentiable
+almost everywhere, so can be used in gradient descent learning
+algorithms. Finally, we showed that minimizing AUM encourages points
+on the ROC curve to move toward the upper left, thereby encouraging
+large AUC. Computation of the AUM loss requires first
+computing ROC curves (same as above), as in the code below.
+
 
 ``` r
 Proposed_AUM <- function(pred_tensor, label_tensor){
