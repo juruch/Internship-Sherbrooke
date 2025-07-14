@@ -112,7 +112,7 @@ data.frame(lapply(list.of.tensors, torch::as_array))
 ## 4 0.5 0.0    1.0  0.6666667                           0.0          1.0          3.5
 ## 5 1.0 0.0    1.0  0.5000000                           0.0          3.5          Inf
 ```
-
+> The table above also has one row for each point on the ROC curve, and the following columns:
 * `FPR` = $\frac{\text{False Positive}}{\text{False Positive} + \text{True Negative}}$, the False Positive Rate (X axis of ROC curve plot), 
 * `TPR` $\frac{\text{True Positive}}{\text{True Positive} + \text{False Negative}}$, the True Positive Rate (Y axis of ROC curve plot), 
 * `FNR=1-TPR` is the False Negative Rate,
@@ -162,9 +162,10 @@ PR_AUC(four_pred, four_labels)
 ## [ CPUFloatType{} ]
 ```
 
-"The ROC AUC value is 0.5, indicating that `four_pred` is not a very
-good vector of predictions with respect to `four_labels`."
-THhe PR AUC value is 0.08 wich is a lot worse than the ROC value.
+> The ROC AUC value is 0.5, indicating that `four_pred` is not a very
+good vector of predictions with respect to `four_labels`.
+
+The PR AUC value is 0.08 wich is a lot worse than the ROC value.
 
 ---
 # AUM (Area Under the Minimum)
