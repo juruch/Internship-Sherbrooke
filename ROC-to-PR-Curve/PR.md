@@ -162,9 +162,9 @@ ROC_AUC(four_pred, four_labels)
 ``` r
 PR_AUC <- function(pred_tensor, label_tensor){
   pr = PR_curve(pred_tensor, label_tensor)
-  precision_diff = pr$precision[3:N]-pr$precision[2:-2]
-  recall_sum = pr$recall[3:N]+pr$recall[2:-2]
-  torch::torch_sum(precision_diff*recall_sum/2.0)
+  recall_diff = pr$recall[3:N]-pr$recall[2:-2]
+  precision_sum = pr$precision[3:N]+pr$precision[2:-2]
+  torch::torch_sum(recall_diff*precision_sum/2.0)
 }
 PR_AUC(four_pred, four_labels)
 ```
@@ -180,7 +180,7 @@ I changed the number of values taken by pr$precision and pr$recall to not take t
 **PR result :** 
 ```
 ## torch_tensor
-## 0.0833333
+## 0.416667
 ## [ CPUFloatType{} ]
 ```
 
