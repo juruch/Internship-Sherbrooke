@@ -1,0 +1,32 @@
+[1] "hi"
+### [bt]: This is batchtools v0.9.17
+### [bt]: Starting calculation of 1 jobs
+### [bt]: Setting working directory to '/home/juruch/Internship-Sherbrooke/PR-AUM'
+Loading required package: mlr3verse
+Loading required package: mlr3
+### [bt]: Memory measurement disabled
+### [bt]: Starting job [batchtools job.id=2]
+### [bt]: Generating problem instance for problem 'c68556ca840beee6' ...
+### [bt]: Applying algorithm 'run_learner' on problem 'c68556ca840beee6' for job 2 (seed = 3) ...
+INFO  [10:12:33.694] [mlr3] Applying learner 'linear_Cross_entropy' on task 'MNIST' (iter 2/3)
+INFO  [10:12:34.104] [bbotk] Starting to optimize 0 parameter(s) with '<TunerBatchInternal>' and '<TerminatorEvals> [n_evals=1, k=0]'
+INFO  [10:12:34.163] [bbotk] Evaluating 1 configuration(s)
+INFO  [10:12:34.182] [mlr3] Running benchmark with 1 resampling iterations
+INFO  [10:12:34.663] [mlr3] Applying learner 'select.torch_ingress_num.linear.nn_head.torch_loss.torch_optimizer.torch_callbacks.torch_model_classif' on task 'MNIST' (iter 1/1)
+INFO  [10:15:06.460] [mlr3] Finished benchmark
+INFO  [10:15:06.592] [bbotk] Result of batch 1:
+INFO  [10:15:06.600] [bbotk]  internal_valid_score warnings errors runtime_learners
+INFO  [10:15:06.600] [bbotk]             0.2815129        0      0          151.297
+INFO  [10:15:06.600] [bbotk]           internal_tuned_values                                uhash
+INFO  [10:15:06.600] [bbotk]  torch_model_classif.epochs=200 06967843-952d-42d4-850d-4c2fa6c82e64
+INFO  [10:15:06.683] [bbotk] Finished optimizing after 1 evaluation(s)
+INFO  [10:15:06.685] [bbotk] Result:
+INFO  [10:15:06.688] [bbotk]           internal_tuned_values learner_param_vals  x_domain
+INFO  [10:15:06.688] [bbotk]                          <list>             <list>    <list>
+INFO  [10:15:06.688] [bbotk]  torch_model_classif.epochs=200         <list[17]> <list[0]>
+INFO  [10:15:06.688] [bbotk]  internal_valid_score
+INFO  [10:15:06.688] [bbotk]                 <num>
+INFO  [10:15:06.688] [bbotk]             0.2815129
+
+### [bt]: Job terminated successfully [batchtools job.id=2]
+### [bt]: Calculation finished!

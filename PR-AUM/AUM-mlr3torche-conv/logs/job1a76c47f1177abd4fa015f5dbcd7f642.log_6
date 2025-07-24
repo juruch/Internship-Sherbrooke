@@ -1,0 +1,87 @@
+[1] "hi"
+### [bt]: This is batchtools v0.9.17
+### [bt]: Starting calculation of 1 jobs
+### [bt]: Setting working directory to '/home/juruch/Internship-Sherbrooke/PR-AUM'
+Loading required package: mlr3verse
+Loading required package: mlr3
+### [bt]: Memory measurement disabled
+### [bt]: Starting job [batchtools job.id=6]
+### [bt]: Generating problem instance for problem 'c68556ca840beee6' ...
+### [bt]: Applying algorithm 'run_learner' on problem 'c68556ca840beee6' for job 6 (seed = 7) ...
+INFO  [10:12:33.758] [mlr3] Applying learner 'PR_AUM' on task 'MNIST' (iter 3/3)
+INFO  [10:12:34.163] [bbotk] Starting to optimize 0 parameter(s) with '<TunerBatchInternal>' and '<TerminatorEvals> [n_evals=1, k=0]'
+INFO  [10:12:34.223] [bbotk] Evaluating 1 configuration(s)
+INFO  [10:12:34.242] [mlr3] Running benchmark with 1 resampling iterations
+INFO  [10:12:34.666] [mlr3] Applying learner 'select.torch_ingress_num.linear.nn_head.torch_loss.torch_optimizer.torch_callbacks.torch_model_classif' on task 'MNIST' (iter 1/1)
+Warning: Caught Rcpp::exception. Canceling all iterations ...
+Error in (function (tensors, dim)  : 
+  Tensors must have same number of dimensions: got 1 and 2
+Exception raised from check_cat_shape_except_dim at ../aten/src/ATen/native/TensorShape.h:19 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xb0 (0x1530f17b9120 in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0xfa (0x1530f175ca5a in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/lib/libc10.so)
+frame #2: at::meta::structured_cat::meta(c10::IListRef<at::Tensor> const&, long) + 0xd26 (0x1530de8d6686 in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x2ea3327 (0x1530df665327 in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x2ea3428 (0x1530df665428 in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/lib/libtorch_cpu.so)
+frame #5: at::_ops::cat::redispatch(c10::DispatchKeySet, c10::IListRef<at::Tensor> const&, long) + 0x8c (0x1530dee25b4c in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x4e2caf7 (0x1530e15eeaf7 in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/lib/libtorch_cpu.so)
+frame #7: <unknown function> + 0x4e2df3b (0x1530e15eff3b in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/lib/libtorch_cpu.so)
+frame #8: at::_ops::cat::call(c10::IListRef<at::Tensor> const&, long) + 0x1ec (0x1530dee7b4bc in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/lib/libtorch_cpu.so)
+frame #9: at::cat(c10::IListRef<at::Tensor> const&, long) + 0x3e (0x1530f248290c in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/lib/liblantern.so)
+frame #10: _lantern_cat_constitensorlistref_intt + 0x6b (0x1530f1fb006d in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/lib/liblantern.so)
+frame #11: cpp_torch_namespace_cat_tensors_TensorList_dim_int64_t(XPtrTorchTensorList, XPtrTorchindex_int64_t) + 0x41 (0x1530f315d521 in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/libs/torchpkg.so)
+frame #12: _torch_cpp_torch_namespace_cat_tensors_TensorList_dim_int64_t + 0x77 (0x1530f2ebad87 in /home/juruch/R/x86_64-pc-linux-gnu-library/4.3/torch/libs/torchpkg.so)
+frame #13: <unknown function> + 0x10634a (0x15310642034a in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #14: <unknown function> + 0x149fa7 (0x153106463fa7 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #15: Rf_eval + 0x150 (0x153106479600 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #16: <unknown function> + 0x16163a (0x15310647b63a in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #17: Rf_applyClosure + 0x19e (0x15310647c4be in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #18: Rf_eval + 0x28c (0x15310647973c in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #19: <unknown function> + 0xcec88 (0x1531063e8c88 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #20: <unknown function> + 0x142151 (0x15310645c151 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #21: Rf_eval + 0x150 (0x153106479600 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #22: <unknown function> + 0x16163a (0x15310647b63a in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #23: Rf_applyClosure + 0x19e (0x15310647c4be in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #24: <unknown function> + 0x150159 (0x15310646a159 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #25: Rf_eval + 0x150 (0x153106479600 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #26: <unknown function> + 0x16163a (0x15310647b63a in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #27: Rf_applyClosure + 0x19e (0x15310647c4be in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #28: <unknown function> + 0x150159 (0x15310646a159 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #29: Rf_eval + 0x150 (0x153106479600 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #30: <unknown function> + 0x16163a (0x15310647b63a in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #31: Rf_applyClosure + 0x19e (0x15310647c4be in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #32: <unknown function> + 0x150159 (0x15310646a159 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #33: Rf_eval + 0x150 (0x153106479600 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #34: <unknown function> + 0x16163a (0x15310647b63a in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #35: Rf_applyClosure + 0x19e (0x15310647c4be in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #36: Rf_eval + 0x28c (0x15310647973c in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #37: <unknown function> + 0x16416b (0x15310647e16b in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #38: Rf_eval + 0x55e (0x153106479a0e in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #39: <unknown function> + 0x162c90 (0x15310647cc90 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #40: Rf_eval + 0x55e (0x153106479a0e in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #41: <unknown function> + 0x16163a (0x15310647b63a in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #42: Rf_applyClosure + 0x19e (0x15310647c4be in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #43: <unknown function> + 0x150159 (0x15310646a159 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #44: Rf_eval + 0x150 (0x153106479600 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #45: <unknown function> + 0x16163a (0x15310647b63a in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #46: Rf_applyClosure + 0x19e (0x15310647c4be in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #47: <unknown function> + 0x150159 (0x15310646a159 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #48: Rf_eval + 0x150 (0x153106479600 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #49: <unknown function> + 0x16163a (0x15310647b63a in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #50: Rf_applyClosure + 0x19e (0x15310647c4be in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #51: <unknown function> + 0x150159 (0x15310646a159 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #52: Rf_eval + 0x150 (0x153106479600 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #53: <unknown function> + 0x15ffb6 (0x153106479fb6 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #54: <unknown function> + 0x1602a0 (0x15310647a2a0 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #55: <unknown function> + 0x14ad6d (0x153106464d6d in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #56: Rf_eval + 0x150 (0x153106479600 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #57: <unknown function> + 0x15ffb6 (0x153106479fb6 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #58: <unknown function> + 0x1602a0 (0x15310647a2a0 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #59: <unknown function> + 0x14ad6d (0x153106464d6d in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #60: Rf_eval + 0x150 (0x153106479600 in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #61: <unknown function> + 0x16163a (0x15310647b63a in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+frame #62: Rf_applyClosure + 0x19e (0x15310647c4be in /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcccore/r/4.3.1/lib64/R/lib/libR.so)
+
+This happened PipeOp torch_model_classif's $train()
+
+### [bt]: Job terminated with an exception [batchtools job.id=6]
+### [bt]: Calculation finished!
