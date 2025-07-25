@@ -124,8 +124,8 @@ four_pred$grad
 
 Proposed_AUM <- function(pred_tensor, label_tensor) {
   
-  is_positive = label_tensor == 1
-  is_negative = label_tensor != 1
+  is_positive = label_tensor$flatten() == 1
+  is_negative = !is_positive
   fn_diff = torch::torch_where(is_positive, -1, 0)
   fp_diff = torch::torch_where(is_positive, 0, 1)
   thresh_tensor = -pred_tensor$flatten()

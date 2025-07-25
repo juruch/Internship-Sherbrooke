@@ -5,9 +5,12 @@ library(mlr3torch)
 library(mlr3tuning)
 library(mlr3learners)
 
+
+
 #####
 # Load AUM loss function
 #####
+
 
 source("PR-Curve.R")
 
@@ -25,9 +28,21 @@ nn_PR_AUM <- torch::nn_module(
 )
 
 
+
 #####
 # Read and setup MNIST task
 #####
+
+
+if(!file.exists("MNIST.csv")){
+  options(timeout = 600)
+  
+  install.packages("googledrive")
+  library(googledrive)
+  
+  file_id <- "1-uFJyJIWZwD5Z58Zzo1XeO8CB45gXO6q"
+  drive_download(as_id(file_id), path = "MNIST.csv", overwrite = TRUE)
+}
 
 MNIST_dt <- fread("MNIST.csv")
 MNIST_dt[, odd := factor(y%%2)]
@@ -40,11 +55,14 @@ mtask <- mlr3::TaskClassif$new(
 mtask$col_roles$stratum <- "odd"
 mtask$col_roles$feature <- grep("^[0-9]+$", names(MNIST_dt), value = TRUE)
 
+
+
 #####
 # Create neural network learners
 #####
 
-measure_list <- msrs(c("classif.logloss", "classif.ce"))
+
+measure_list <- msrs(c("classif.prauc", "classif.ce"))
 n.epochs <- 200
 
 make_torch_learner <- function(id,loss){
@@ -82,7 +100,7 @@ make_torch_learner <- function(id,loss){
     learner = glearner,
     tuner = mlr3tuning::tnr("internal"),
     resampling = mlr3::rsmp("insample"),
-    measure = mlr3::msr("internal_valid_score", minimize = TRUE),
+    measure = mlr3::msr("classif.prauc", minimize = TRUE),
     term_evals = 1,
     id=id,
     store_models = TRUE)
@@ -91,9 +109,12 @@ learner.list<-list(
   make_torch_learner("linear_Cross_entropy",torch::nn_bce_with_logits_loss),
   make_torch_learner("PR_AUM", nn_PR_AUM))
 
+
+
 #####
 # Benchmark grid
 #####
+
 
 kfoldcv <- rsmp("cv", folds = 3)
 bench.grid <- benchmark_grid(
@@ -102,12 +123,16 @@ bench.grid <- benchmark_grid(
   kfoldcv
 )
 
+
+
 #####
 # Run benchmark
 #####
 
-reg.dir <- "AUM-mlr3torche-conv"
+
+reg.dir <- "AUM-test-conv"
 cache.RData <- paste0(reg.dir, ".RData")
+
 
 if(file.exists(cache.RData)){
   load(cache.RData)
@@ -148,18 +173,16 @@ if(file.exists(cache.RData)){
 
 
 
-
-
 #####
 # Error result
 #####
 
+
 score_dt <- bench.result$score()
 (score_some <- score_dt[order(classif.ce), .(
-  learner_id=factor(learner_id, unique(learner_id)),
+  learner_id = factor(learner_id, unique(learner_id)),
   iteration,
-  percent_error=100*classif.ce)])
-
+  percent_error = 100 * classif.ce)])
 
 library(ggplot2)
 ggplot()+
@@ -168,8 +191,8 @@ ggplot()+
     shape=1,
     data=score_some)+
   scale_x_continuous(
-    breaks=seq(0,100,by=10),
-    limits=c(0,90))
+    breaks=seq(0,70,by=10),
+    limits=c(0,70))
 
 
 (score_stats <- data.table::dcast(
@@ -179,50 +202,49 @@ ggplot()+
   value.var="percent_error"))
 
 
-score_show <- score_stats[learner_id!="featureless"]
-score_some_minuscv <- score_some[learner_id!="cv_glmnet"]
 ggplot()+
   geom_point(aes(
     percent_error_mean, learner_id),
     shape=1,
-    data=score_show)+
+    data=score_stats)+
   geom_segment(aes(
     percent_error_mean+percent_error_sd, learner_id,
     xend=percent_error_mean-percent_error_sd, yend=learner_id),
-    data=score_show)+
+    data=score_stats)+
   geom_text(aes(
     percent_error_mean, learner_id,
     label=sprintf("%.2f±%.2f", percent_error_mean, percent_error_sd)),
     vjust=-0.5,
-    data=score_show)+
-  coord_cartesian(xlim=c(0,10))+
+    data=score_stats)+
+  coord_cartesian(xlim=c(0,70))+  
   scale_x_continuous(
     "Percent error on test set (mean ± SD over 3 folds in CV)",
-    breaks=seq(0,10,by=2))
+    breaks=seq(0,70,by=10))
 
 
 (levs <- levels(score_some$learner_id))
 
 
-(pval_dt <- data.table(comparison_i=1:2)[, {
-  two_levs <- levs[comparison_i+c(0,1)]
+(pval_dt <- data.table(comparison_i=1)[, {
+  two_levs <- levs
   lev2rank <- structure(c("lo","hi"), names=two_levs)
-  i_long <- score_some_minuscv[
+  i_long <- score_some[
     learner_id %in% two_levs
   ][
     , rank := lev2rank[paste(learner_id)]
   ][]
+      
   i_wide <- dcast(i_long, iteration ~ rank, value.var="percent_error")
   paired <- with(i_wide, t.test(lo, hi, alternative = "l", paired=TRUE))
   unpaired <- with(i_wide, t.test(lo, hi, alternative = "l", paired=FALSE))
   data.table(
-    learner.lo=factor(two_levs[1],levs),
-    learner.hi=factor(two_levs[2],levs),
-    p.paired=paired$p.value,
-    p.unpaired=unpaired$p.value,
-    mean.diff=paired$est,
-    mean.lo=unpaired$est[1],
-    mean.hi=unpaired$est[2])
+      learner.lo=factor(two_levs[1], levs),
+      learner.hi=factor(two_levs[2], levs),
+      p.paired=paired$p.value,
+      p.unpaired=unpaired$p.value,
+      mean.diff=paired$estimate,
+      mean.lo=unpaired$estimate[1],
+      mean.hi=unpaired$estimate[2])
 }, by=comparison_i])
 
 
@@ -242,22 +264,22 @@ ggplot()+
   geom_point(aes(
     percent_error_mean, learner_id),
     shape=1,
-    data=score_show)+
+    data=score_stats)+
   geom_segment(aes(
     percent_error_mean+percent_error_sd, learner_id,
     xend=percent_error_mean-percent_error_sd, yend=learner_id),
     size=1,
-    data=score_show)+
+    data=score_stats)+
   geom_text(aes(
     percent_error_mean, learner_id,
     label=sprintf("%.2f±%.2f", percent_error_mean, percent_error_sd)),
     vjust=-0.5,
-    data=score_show)+
-  coord_cartesian(xlim=c(0,10))+
+    data=score_stats)+
+  coord_cartesian(xlim=c(0,70))+
   scale_y_discrete("algorithm")+
   scale_x_continuous(
     "Percent error on test set (mean ± SD over 3 folds in CV)",
-    breaks=seq(0,10,by=2))
+    breaks=seq(0,70,by=10))
 
 
 
@@ -265,11 +287,15 @@ ggplot()+
 # Validation loss curves
 #####
 
+
+torch_learner_ids <- c("linear_Cross_entropy", "PR_AUM")
+
 (score_torch <- score_dt[
-  grepl("torch",learner_id)
+  learner_id %in% torch_learner_ids
 ][
-  , best_epoch := sapply(
-    learner, function(L)unlist(L$tuning_result$internal_tuned_values))
+  , best_epoch := sapply(learner, function(L) {
+    unlist(L$tuning_result$internal_tuned_values)
+  })
 ][])
 
 
@@ -284,7 +310,7 @@ ggplot()+
   history_torch,
   set=nc::alevels(valid="validation", train="subtrain"),
   ".classif.",
-  measure=nc::alevels("logloss", ce="prop_error")))
+  measure=nc::alevels("prauc", ce="prop_error")))
 
 
 ggplot()+
@@ -299,9 +325,9 @@ ggplot()+
     data=score_torch)+
   geom_line(aes(
     epoch, value, color=set),
-    data=history_long[measure=="logloss"])+
+    data=history_long[measure=="prauc"])+
   facet_grid(iteration ~ learner_id, labeller=label_both)+
-  scale_y_log10("logistic loss")+
+  scale_y_log10("pr auc")+
   scale_x_continuous("epoch")
 
 
@@ -333,6 +359,8 @@ ggplot()+
   facet_grid(measure ~ learner_id, labeller=label_both, scales="free")+
   scale_x_continuous("epoch")+
   scale_y_log10("")
+
+
 
 
 
