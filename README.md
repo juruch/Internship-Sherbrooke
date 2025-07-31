@@ -54,3 +54,11 @@ To finish my analysis on this dataset I redid the PR curve with Versicolor again
   I found [this](https://jamesmccaffrey.wordpress.com/2023/02/02/what-are-correct-values-for-precision-and-recall-when-the-denominators-are-zero/) blog post and [this](https://stats.stackexchange.com/questions/8025/what-are-correct-values-for-precision-and-recall-when-the-denominators-equal-0) forum post. I learned that if the precion's denominator is equal to zero then it means that the model always predicts class negative, similarly for the recall if its denominator is equal to zero then the data only has elements in the negative class.  
   The solution to these issues would be to return an error and set the value of the precision or the recall to NaN and not 0 to differentiate from when the models doesn't predict correctly any positive (no TP).   
     [Here](ROC-to-PR-Curve/PR.md) I looked at the differences between the two codes. I then redid the same thing [here](ROC-to-PR-Curve/PR.ipynb) using python and also the `precision_recall_curve` function in scikit learn. When studying the impact of the value chosen for the precision when its denominator is equal to zero I found that it greatly impacted the AUC however the AUM stayed the same.
+  <p align="center">
+  <img src="Figures/Fig-Week2-AUC-vs-AUM.png" alt="Description" width="650"/>
+</p>
+
+
+
+## Week 3
+After creating the PR AUM function I used it in the code I used at the very begining. [It](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/AUM-PR.R) gave me different figures, I then changed the measures to use `classif.prauc`.
