@@ -12,8 +12,35 @@ AUM : Area Under the Minimum
 
 PR : Precision-Recall
 
+---
 
-## Week 1
+
+## Week 5 - 04/08
+Remaking past figures for more clarity, sometimes changing th enumber of epochs or the learning-rate.
+
+
+
+## Week 4 - 28/07
+Creation of imbalanced dataset to study the results using my Proposed_Aum function.
+
+
+## Week 3 - 21/07
+After creating the PR AUM function I used it in the code I used at the very begining. [It](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/AUM-PR.R) gave me different figures, I then changed the measures to use `classif.prauc`.
+
+
+## Week 2 - 14/07
+- To continue my studies on the PR curve I used [this code](https://tdhock.github.io/blog/2024/auto-grad-overhead/) and transformed it from ROC to PR.  
+  I searched how to handle the case where (TP+FP)=0 and how to define the precision in this case.
+  I found [this](https://jamesmccaffrey.wordpress.com/2023/02/02/what-are-correct-values-for-precision-and-recall-when-the-denominators-are-zero/) blog post and [this](https://stats.stackexchange.com/questions/8025/what-are-correct-values-for-precision-and-recall-when-the-denominators-equal-0) forum post. I learned that if the prediction's denominator is equal to zero then it means that the model always predicts class negative, similarly for the recall if its denominator is equal to zero then the data only has elements in the negative class.  
+  The solution to these issues would be to return an error and set the value of the precision or the recall to NaN and not 0 to differentiate from when the models doesn't predict correctly any positive (no TP).   
+    [Here](ROC-to-PR-Curve/PR.md) I looked at the differences between the two codes. I then redid the same thing [here](ROC-to-PR-Curve/PR.ipynb) using python and also the `precision_recall_curve` function in scikit learn. When studying the impact of the value chosen for the precision when its denominator is equal to zero I found that it greatly impacted the AUC however the AUM stayed the same.
+  <p align="center">
+  <img src="Figures/Fig-Week2-AUC-vs-AUM.png" alt="Description" width="650"/>
+</p>
+
+
+
+## Week 1 - 07/07
 
 - I began by redoing the [following code](https://tdhock.github.io/blog/2025/mlr3torch-conv/), only changing the number of epochs from 200 to 2 to make it run on my own computer.  
 Results with two epochs :   
@@ -46,25 +73,4 @@ To finish my analysis on this dataset I redid the PR curve with Versicolor again
   <img src="Figures/Fig-Week1-CancerPR-py.png" alt="Description" width="650"/>
 </p>
   
-
-
-## Week 2
-- To continue my studies on the PR curve I used [this code](https://tdhock.github.io/blog/2024/auto-grad-overhead/) and transformed it from ROC to PR.  
-  I searched how to handle the case where (TP+FP)=0 and how to define the precision in this case.
-  I found [this](https://jamesmccaffrey.wordpress.com/2023/02/02/what-are-correct-values-for-precision-and-recall-when-the-denominators-are-zero/) blog post and [this](https://stats.stackexchange.com/questions/8025/what-are-correct-values-for-precision-and-recall-when-the-denominators-equal-0) forum post. I learned that if the prediction's denominator is equal to zero then it means that the model always predicts class negative, similarly for the recall if its denominator is equal to zero then the data only has elements in the negative class.  
-  The solution to these issues would be to return an error and set the value of the precision or the recall to NaN and not 0 to differentiate from when the models doesn't predict correctly any positive (no TP).   
-    [Here](ROC-to-PR-Curve/PR.md) I looked at the differences between the two codes. I then redid the same thing [here](ROC-to-PR-Curve/PR.ipynb) using python and also the `precision_recall_curve` function in scikit learn. When studying the impact of the value chosen for the precision when its denominator is equal to zero I found that it greatly impacted the AUC however the AUM stayed the same.
-  <p align="center">
-  <img src="Figures/Fig-Week2-AUC-vs-AUM.png" alt="Description" width="650"/>
-</p>
-
-
-
-## Week 3
-After creating the PR AUM function I used it in the code I used at the very begining. [It](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/AUM-PR.R) gave me different figures, I then changed the measures to use `classif.prauc`.
-
-
-
-## Week 4
-
 
