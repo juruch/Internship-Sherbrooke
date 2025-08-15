@@ -14,6 +14,18 @@ PR : Precision-Recall
 
 ---
 
+## Data
+To get the datasets that I used, you can simply run the file [DownloadData.R](https://github.com/juruch/Internship-Sherbrooke/blob/main/DownloadData.R) in R. Using this file you can download the datasets : 
+- MNIST
+- EMNIST
+- FashionMNIST
+
+  
+
+---
+
+## Week 6 - 11/08
+[Here](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/Results.md) are all the results from the different experiment, with different learners, measures and learning rates.
 
 ## Week 5 - 04/08
 Remaking past figures for more clarity, sometimes changing th enumber of epochs or the learning-rate.
@@ -21,7 +33,7 @@ Remaking past figures for more clarity, sometimes changing th enumber of epochs 
 
 
 ## Week 4 - 28/07
-Creation of imbalanced dataset to study the results using my Proposed_Aum function.
+Creation of imbalanced dataset to study the results using my Proposed_AUM function.
 
 
 ## Week 3 - 21/07
