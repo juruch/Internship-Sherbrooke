@@ -1,43 +1,62 @@
-
-
-## Introduction
-This project is the work I did during my two months summer research internship at the University of Sherbrooke - Department of Computer-Science.
+# Introduction
+This project is the work I did during my two months summer research internship at the University of Sherbrooke - Department of Computer-Science. I was supervised by [professor Toby Dylan Hocking](https://tdhock.github.io). During my two months I did research on the Precision-Recall AUC and AUM for imbalanced datasets.
 
 ---
 
-## Lexicon
+# Lexicon
 ROC : Receiver Operating Characteristic  
+PR : Precision-Recall 
+
 AUC : Area Under the Curve  
 AUM : Area Under the Minimum  
 
-PR : Precision-Recall
-
 ---
 
-## Data
-To get the datasets that I used, you can simply run the file [DownloadData.R](https://github.com/juruch/Internship-Sherbrooke/blob/main/DownloadData.R) in R. Using this file you can download the datasets : 
+# Data
+To get the datasets that I used, you can simply run the file [DownloadData.R](https://github.com/juruch/Internship-Sherbrooke/blob/main/DownloadData.R) in RStudio. Using this file you can download the datasets : 
 - MNIST
 - EMNIST
 - FashionMNIST
-
   
+For the imbalanced datasets you can run [CreateImbalanced.R](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/CreateImbalanced.R), you might need to modify the first line depending on where you saved the MNSIT datasets.
 
 ---
 
+# Repository organisation
+- [Figures](https://github.com/juruch/Internship-Sherbrooke/tree/main/Figures) : my figures for this ReadMe.
+- [Learning-PR-Curves](https://github.com/juruch/Internship-Sherbrooke/tree/main/Learning-PR-Curves) : my first codes to understand how to use Precision-Recall curves.
+- [ROC-to-PR-Curve](https://github.com/juruch/Internship-Sherbrooke/tree/main/ROC-to-PR-Curve) : translating [ROC codes](https://tdhock.github.io/blog/2024/auto-grad-overhead/) for precision-recall, I later based [my R package](https://github.com/juruch/torchPRcurve) on these codes.
+- [PR-AUM](https://github.com/juruch/Internship-Sherbrooke/tree/main/PR-AUM) : my codes and results to experiment the PR-AUM using an [online cluster](https://docs.alliancecan.ca/wiki/Rorqual).
+
+
+---
+# Chronology
+
+## Week 8 - 25/08
+This being my last week, my goal is to do as much as possible.
+
+
+## Week 7 - 18/08
+- I wrote two articles for my blog, one on how to install the package torch in RStudio and the other on how to create an R package and how to make pull requests.
+
+
 ## Week 6 - 11/08
-[Here](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/Results.md) are all the results from the different experiment, with different learners, measures and learning rates.
+ - [Here](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/FirstResults.md) are all the results from the different experiment, with different learners, measures and learning rates.
+ - Creation of the file [DownloadData.R](https://github.com/juruch/Internship-Sherbrooke/blob/main/DownloadData.R) for other user to download the datasets I have been working on. It made me learn about the package R `googledrive`.
 
 ## Week 5 - 04/08
-Remaking past figures for more clarity, sometimes changing th enumber of epochs or the learning-rate.
+Remaking past figures for more clarity, sometimes changing the number of epochs or the learning-rate.
 
 
 
 ## Week 4 - 28/07
-Creation of imbalanced dataset to study the results using my Proposed_AUM function.
+ - [Creation of imbalanced dataset](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/CreateImbalanced.R) to study the results using my PR_AUM function.
 
 
 ## Week 3 - 21/07
-After creating the PR AUM function I used it in the code I used at the very begining. [It](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/AUM-PR.R) gave me different figures, I then changed the measures to use `classif.prauc`.
+- After creating the PR AUM function I used it in the code I used at the very begining. [It]([https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/AUM-PR.R](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/PR-AUM.R)) gave me different figures, I then changed the measures to use `classif.prauc` [here](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/PR-AUM-prauc.R).
+- I also created my own [blog](https://juruch.github.io) to explain things I learned during the internship and write down about my results and my experiences.
+
 
 
 ## Week 2 - 14/07
