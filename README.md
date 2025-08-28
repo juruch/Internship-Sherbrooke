@@ -34,23 +34,31 @@ For the imbalanced datasets you can run [CreateImbalanced.R](https://github.com/
 
 ## Week 8 - 25/08
 This being my last week, my goal is to do as much as possible.
+- Finishing my torchPRcurve and try to publishing it to the CRAN.
+- Update my codes to use said package.
+- Clean my blog posts.
 
 
 ## Week 7 - 18/08
 - I wrote two articles for my blog, one on how to install the package torch in RStudio and the other on how to create an R package and how to make pull requests.
+- Use a [custom measure](https://github.com/juruch/torchPRcurve/blob/main/R/MeasureClassifPRaum.R) based on my PR_AUM code.
 
 
 ## Week 6 - 11/08
  - [Here](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/FirstResults.md) are all the results from the different experiment, with different learners, measures and learning rates.
  - Creation of the file [DownloadData.R](https://github.com/juruch/Internship-Sherbrooke/blob/main/DownloadData.R) for other user to download the datasets I have been working on. It made me learn about the package R `googledrive`.
 
-## Week 5 - 04/08
-Remaking past figures for more clarity, sometimes changing the number of epochs or the learning-rate.
 
+## Week 5 - 04/08
+ - Remaking past figures for more clarity, sometimes changing the number of epochs or the learning-rate.
+ - Changing the PR_curve code, now Precision equals one when its denominator is equal to zero to get a more accurate AUC value.
 
 
 ## Week 4 - 28/07
+ - I continued my experiments with imbalanced datasets, first using [one VS all](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/PR-AUM-oneVSall.R), to see the differences.
  - [Creation of imbalanced dataset](https://github.com/juruch/Internship-Sherbrooke/blob/main/PR-AUM/CreateImbalanced.R) to study the results using my PR_AUM function.
+ - I created my R package : [torchPRcurve](https://github.com/juruch/torchPRcurve).
+ - During a tutorial I learned about pull-requests and started using them to allow review before merging my new codes.
 
 
 ## Week 3 - 21/07
